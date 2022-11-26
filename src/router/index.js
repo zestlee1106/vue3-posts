@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import AboutView from '@/views/AboutView.vue';
+import PostCreateView from '@/views/posts/PostCreateView.vue';
+import PostDetailView from '@/views/posts/PostDetailView.vue';
+import PostEditView from '@/views/posts/PostEditView.vue';
+import PostListView from '@/views/posts/PostListView.vue';
 
 const routes = [
   {
@@ -12,6 +16,27 @@ const routes = [
     path: '/about',
     name: 'About',
     component: AboutView,
+  },
+  {
+    path: '/posts',
+    name: 'PostList',
+    component: PostListView,
+  },
+  {
+    path: '/posts/create',
+    name: 'PostCreate',
+    component: PostCreateView,
+  },
+  {
+    // 여러개의 경로를 하나의 페이지 컴포넌트에 맵핑하기 위함
+    path: '/posts/:id',
+    name: 'PostDetail',
+    component: PostDetailView,
+  },
+  {
+    path: '/posts/:id/edit',
+    name: 'PostEdit',
+    component: PostEditView,
   },
 ];
 
