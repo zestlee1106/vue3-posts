@@ -34,7 +34,7 @@ npm run lint
   - `this.$route`, `this.$router` 이렇게 사용하던 것이 `useRoute()`, `useRouter()` 요렇게 바뀐 정도?
 - 뭔가의 라이브러리를 전역으로 사용하기 위해서는 main.js 의 createApp 에서 use 를 해야 한다.
 - router 기능을 사용하여 router 의 view 를 보여 주려면 RouterView 컴포넌트를 추가해야 한다.
-- router 와 route 의 개념과, router-link 의 기능을 다시 한번 더 생각해 보게 되었다.
+- 다이나믹 라우트는 path가 `/posts/:id` 이런 식으로 된다.
 
 ### router 와 route 는 뭐가 다른가요?
 
