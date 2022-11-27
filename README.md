@@ -46,3 +46,10 @@ route 는 어떤 URL 에 대한 어떤 페이지를 표시해야 하는지에 �
 일반적으로 페이지 이동이라 함은, a tag 를 쓰기 마련이다.  
 하지만 a tag 에 href 속성으로 페이지를 이동하게 되면, 리로딩을 하게 되기 때문에 SPA 로 동작을 하지 않는다.  
 따라서 a 태그를 사용하는 대신 RouterLink 커스텀 컴포넌트를 이동해야 한다.
+
+### Nested 라우트는 뭔가요?
+
+중첩된 라우트이다.  
+`/nested/one`, `/nested/Two` 이런 식으로 /nested 에 딸려있는 중첩된 라우트를 생성하고 싶을 때 사용하면 된다.  
+nested 페이지 내부에서 라우팅을 할 곳에 `router-view` 컴포넌트를 다시 불러주고,  
+router/index.vue 에서 nested 하위에 children 속성으로 one, two 를 넣어주면 된다.
