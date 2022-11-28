@@ -53,3 +53,20 @@ route 는 어떤 URL 에 대한 어떤 페이지를 표시해야 하는지에 �
 `/nested/one`, `/nested/Two` 이런 식으로 /nested 에 딸려있는 중첩된 라우트를 생성하고 싶을 때 사용하면 된다.  
 nested 페이지 내부에서 라우팅을 할 곳에 `router-view` 컴포넌트를 다시 불러주고,  
 router/index.vue 에서 nested 하위에 children 속성으로 one, two 를 넣어주면 된다.
+
+### createWebHistory, createWebHashHistory 는 뭐가 다를까?
+
+각각 히스토리 모드, 해쉬 모드를 가리킨다.
+
+- 히스토리 모드
+
+  - /post/create 이런 식으로 일반적인 라우팅으로 된다
+  - SPA의 히스토리 모드이기 때문에, 만약에 배포를 할 경우 404 error 가 나오고,  
+    해당 에러를 없애기 위해서는, vue router 공식문서에 아파치, nginx 등 설정이 나와있다.
+  - SEO 에 (그나마) 최적화가 되어있다. SPA 는 긁어봤자 app.js 만 있기 때문에, 긁어 봤자이다.
+
+- 해쉬모드
+  - /#/post/create 이런 식으로 # 이 붙어있다.
+  - 배포를 할 경우 어차피 index.html 로만 요청을 하기 때문에 오류가 나지 않는다.
+  - 보통 url 에서의 #은 위치를 나타내기 때문에, 검색 엔진이 라우트로 인식을 하지 않는다.
+  - 따라서 SEO 최적화에 좋지가 않다.
