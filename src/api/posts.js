@@ -35,3 +35,7 @@ const posts = [
 export function getPosts() {
   return posts;
 }
+
+export function getPostById(id) {
+  return posts.find(item => item.id === id);
+}
