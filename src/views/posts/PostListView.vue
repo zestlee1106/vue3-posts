@@ -93,7 +93,7 @@ const params = ref({
   _order: 'desc',
   _limit: 3,
   _page: 1,
-  title_like: '9',
+  title_like: '',
 });
 // pagination
 const totalCount = ref(0);
