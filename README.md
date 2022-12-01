@@ -70,3 +70,25 @@ router/index.vue 에서 nested 하위에 children 속성으로 one, two 를 넣�
   - 배포를 할 경우 어차피 index.html 로만 요청을 하기 때문에 오류가 나지 않는다.
   - 보통 url 에서의 #은 위치를 나타내기 때문에, 검색 엔진이 라우트로 인식을 하지 않는다.
   - 따라서 SEO 최적화에 좋지가 않다.
+
+## 2. Props, Emits
+
+- props 와 emits 도 많이 바뀌지 않았다.
+- 기존에는 props 를 받기 위해서 그냥 props 옵션만 추가했다면, 지금은 vue 에서 import 를 해와야 한다.
+- defineProps 를 통해서 prop 을 정의해 주고, 그걸 템플릿 안에서 사용하면 된다.
+- 만약 스크립트 내에서 사용하고 싶다면, 변수에 할당해서 사용하면 된다.
+
+```javascript
+const props = defineProps({
+  title: {
+    type: String,
+  },
+});
+const test = props.title;
+```
+
+- 기존에 emits 는 그냥 `$emit('eventName', payload)` 이런 느낌이었다면, 지금은 defineEmits 를 통해서 선언을 해 줘야 한다.
+
+```javascript
+defineEmits(['update:title', 'update:content']);
+```
