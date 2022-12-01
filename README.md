@@ -90,5 +90,6 @@ const test = props.title;
 - 기존에 emits 는 그냥 `$emit('eventName', payload)` 이런 느낌이었다면, 지금은 defineEmits 를 통해서 선언을 해 줘야 한다.
 
 ```javascript
-defineEmits(['update:title', 'update:content']);
+const emit = defineEmits(['handleBtnClick']);
+emit('handleBtnClick');
 ```
