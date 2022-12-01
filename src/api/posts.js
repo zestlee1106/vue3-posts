@@ -12,8 +12,12 @@ export function createPost(data) {
   return posts.post('', data);
 }
 
+// export function updatePost(id, data) {
+//   return posts.put(String(id), data);
+// }
+
 export function updatePost(id, data) {
-  return posts.put(String(id), data);
+  return posts.patch(String(id), data);
 }
 
 export function deletePost(id) {
