@@ -93,3 +93,11 @@ const test = props.title;
 const emit = defineEmits(['handleBtnClick']);
 emit('handleBtnClick');
 ```
+
+## 3. Transition
+
+- Vue 에서는 트랜지션이나 애니메이션을 쉽게 추가할 수 있도록 Transition 이라는 컴포넌트를 제공한다. (Vue2 에서도 있었음)
+- 사용하기 위해서는 따로 import 를 할 필요가 없이 바로 가져다가 쓸 수 있다.
+- slot 을 통해 전달된 컴포넌트가 생기거나 사라질 때 애니메이션을 추가해 줄 수 있다.
+- name prop 을 통해 이름을 정해 줄 수 있고, 해당 이름으로 클래스 명이 바뀐다.
+- 기본 클래스 명은 `v-[enter/leave]-[from/to/active]` 이고, `[name]-[enter/leave]-[from/to/active]` 이렇게 바뀔 수가 있다.
