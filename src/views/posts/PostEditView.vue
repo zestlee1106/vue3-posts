@@ -18,11 +18,7 @@
         <button class="btn btn-primary">수정</button>
       </template>
     </post-form>
-    <app-alert
-      :show="showAlert"
-      :message="alertMessage"
-      :type="alertType"
-    ></app-alert>
+    <app-alert :items="alerts"></app-alert>
   </div>
 </template>
 
@@ -48,7 +44,7 @@ const fetchPost = async () => {
     setForm(data);
   } catch (error) {
     console.error(error);
-    vAlert('네트워크 오류');
+    vAlert(error.message);
   }
 };
 const setForm = ({ title, content }) => {
@@ -71,19 +67,15 @@ const edit = async () => {
     // goDetailPage();
   } catch (error) {
     console.error(error);
-    vAlert('네트워크 오류');
+    vAlert(error.message);
   }
 };
 
-const showAlert = ref(false);
-const alertMessage = ref('');
-const alertType = ref('');
+const alerts = ref([]);
 const vAlert = (message, type = 'error') => {
-  showAlert.value = true;
-  alertType.value = type;
-  alertMessage.value = message;
+  alerts.value.push({ message, type });
   setTimeout(() => {
-    showAlert.value = false;
+    alerts.value.shift();
   }, 2000);
 };
 </script>
