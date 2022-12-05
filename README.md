@@ -97,6 +97,7 @@ emit('handleBtnClick');
 ## 3. Transition
 
 - Vue 에서는 트랜지션이나 애니메이션을 쉽게 추가할 수 있도록 Transition 이라는 컴포넌트를 제공한다. (Vue2 에서도 있었음)
+- v-if, v-show, dynamic component 에서만 트리거가 작동한다.
 - 사용하기 위해서는 따로 import 를 할 필요가 없이 바로 가져다가 쓸 수 있다.
 - slot 을 통해 전달된 컴포넌트가 생기거나 사라질 때 애니메이션을 추가해 줄 수 있다.
 - name prop 을 통해 이름을 정해 줄 수 있고, 해당 이름으로 클래스 명이 바뀐다.
@@ -106,3 +107,51 @@ emit('handleBtnClick');
 
 - transition 을 여러개 띄워주고 싶을 수도 있는데, 그럴 때 사용하는 것이 transition group 이다.
 - name 은 transition 과 똑같이 전달해 주면 된다.
+
+## 4. Teleport
+
+- Vue3 에서는 Teleport 라는 내장 컴포넌트가 생겼는데, 이건 특정 dom 에 컴포넌트를 위치 이동 시키는 용도이다.
+- 위치 이동할 곳에 `to="#[id 이름]"` 을 넣어 아래처럼 작성한 뒤,
+
+```html
+<teleport to="#modal">
+  <post-modal
+    v-model="show"
+    :title="modalTitle"
+    :content="modalContent"
+    :created-at="modalCreatedAt"
+  />
+</teleport>
+```
+
+- index.html 에 id 태그를 넣어 추가해 주면 된다.
+
+```html
+<div id="modal"></div>
+```
+
+- 이렇게 할 경우 현재 component 와 상관 없이 app 바깥에 위치할 수 있게 되기 때문에, css 충돌 등의 이슈가 사라지게 된다.
+
+## 5. custom model
+
+- vue3 부터는 v-model 사용법이 바뀌었다.
+- vue2 에서는 .sync 속성으로 양방향 바인딩이 되게끔 하였다면,  
+  vue3 에서는 value 는 modelValue 로 고정, emit 은 update:modelValue 로 고정되었다.
+- 만약에 컴포넌트 내에서 다른 이름으로 접근하고 싶으면, vue2 처럼 computed 를 이용하면 된다.
+
+```javascript
+defineProps({
+  modelValue: Boolean,
+});
+
+defineEmits(['close', 'update:modelValue']);
+
+const show = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
+```
