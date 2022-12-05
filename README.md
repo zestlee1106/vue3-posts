@@ -101,3 +101,8 @@ emit('handleBtnClick');
 - slot 을 통해 전달된 컴포넌트가 생기거나 사라질 때 애니메이션을 추가해 줄 수 있다.
 - name prop 을 통해 이름을 정해 줄 수 있고, 해당 이름으로 클래스 명이 바뀐다.
 - 기본 클래스 명은 `v-[enter/leave]-[from/to/active]` 이고, `[name]-[enter/leave]-[from/to/active]` 이렇게 바뀔 수가 있다.
+
+## 3-1. Transition group
+
+- transition 을 여러개 띄워주고 싶을 수도 있는데, 그럴 때 사용하는 것이 transition group 이다.
+- name 은 transition 과 똑같이 전달해 주면 된다.
