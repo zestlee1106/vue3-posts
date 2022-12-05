@@ -155,3 +155,18 @@ const show = computed({
   },
 });
 ```
+
+## 6. Plugin
+
+- 플러그인 주입하는 방법은 여러가지가 있다.
+- app.component() 전역 컴포넌트 추가
+- app.config.globalProperties 전역 애플리케이션 인스턴스에 속성 추가
+- app.directive() 커스텀 디렉티브 추가
+- app.provide() 리소스 (함수 혹은 데이터) 추가
+
+Vue3 에서 추가되고 바뀐 건 globalProperties, provide 가 있다.  
+기존에는 `Vue.prototype.$person` 처럼 Vue 객체에 접근하여 글로벌 변수를 만들었다면,  
+지금은 플러그인에서 접근하여 변수를 선언할 수 있다.  
+
+또한 globalProperties 로 글로벌 변수를 만들 경우 setup 내에서 사용이 불가능하고, created 훅에서 접근이 가능하다.  
+setup 내에서 접근하고 싶다면, provide, inject 를 통해 변수를 선언해 주면 된다.
