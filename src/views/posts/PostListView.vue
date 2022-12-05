@@ -24,6 +24,7 @@
           :content="post.content"
           :created-at="post.createdAt"
           @click="goPage(post.id)"
+          @modal="openModal(post)"
         ></post-item>
       </div>
     </div>
@@ -32,6 +33,23 @@
       :page-count="pageCount"
       @page="page => (params._page = page)"
     />
+    <app-modal :show="show" title="게시글" @close="closeModal">
+      <template #default>
+        <div class="row g-3">
+          <div class="col-3 text-muted">제목</div>
+          <div class="col-9">{{ modalTitle }}</div>
+          <div class="col-3 text-muted">내용</div>
+          <div class="col-9">{{ modalContent }}</div>
+          <div class="col-3 text-muted">등록일</div>
+          <div class="col-9">{{ modalCreatedAt }}</div>
+        </div>
+      </template>
+      <template #actions>
+        <button type="button" class="btn btn-secondary" @click="closeModal">
+          닫기
+        </button>
+      </template>
+    </app-modal>
     <template v-if="posts && posts.length">
       <hr class="my-5" />
       <app-card>
@@ -49,6 +67,7 @@ import AppPagination from '@/components/AppPagination.vue';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 import AppCard from '@/components/AppCard.vue';
+import AppModal from '@/components/AppModal.vue';
 
 const router = useRouter();
 const posts = ref([]);
@@ -87,6 +106,21 @@ const goPage = id => {
       id,
     },
   });
+};
+
+// modal
+const show = ref(false);
+const modalTitle = ref('');
+const modalContent = ref('');
+const modalCreatedAt = ref('');
+const openModal = ({ title, content, createdAt }) => {
+  show.value = true;
+  modalTitle.value = title;
+  modalContent.value = content;
+  modalCreatedAt.value = createdAt;
+};
+const closeModal = () => {
+  show.value = false;
 };
 </script>
 
